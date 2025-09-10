@@ -1,0 +1,120 @@
+/* General Styles */
+#suppliersList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.empty-message {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+}
+
+/* Supplier Card Styles */
+.supplier-card-wrapper {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.supplier-card-wrapper:hover {
+    transform: translateY(-3px);
+}
+
+.supplier-header {
+    background-color: #f4f4f4;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.supplier-name {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #333;
+}
+
+.supplier-status {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.status-badge-active {
+    background-color: #28a745; /* Green */
+}
+
+.status-badge-inactive {
+    background-color: #dc3545; /* Red */
+}
+
+.supplier-body {
+    padding: 15px;
+}
+
+.supplier-contact {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.supplier-contact i {
+    margin-right: 5px;
+    color: #777;
+}
+
+/* Action Buttons */
+.supplier-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+.action-button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.view-button {
+    background-color: var(--primary-color)
+}
+
+.block-button {
+    background-color: #f8283c; /* Red */
+}
+
+.unblock-button {
+    background-color: #28a745; /* Green */
+}
+
+.action-button:hover {
+    opacity: 0.8;
+}
+
+/* smaller screens */
+@media (max-width: 600px) {
+    #suppliersList {
+        grid-template-columns: 1fr; /* Stack cards on smaller screens */
+    }
+
+    .supplier-actions {
+        flex-direction: column; /* Stack buttons vertically on smaller screens */
+        align-items: stretch; /* Make buttons full width */
+    }
+
+    .action-button {
+        width: 100%; /* Make buttons full width */
+        margin-bottom: 5px; /* Add spacing between stacked buttons */
+    }
+}

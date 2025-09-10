@@ -1,0 +1,101 @@
+@import 'variables.css'; /* Ensure this path is correct */
+
+.inventory-controls {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.inventory-table-container { /* Container for responsive table */
+    overflow-x: auto; /* Horizontal scrolling on small screens */
+    width: 800px;  /* This is important! Ensure the container is full width. */
+    height: 100%;
+}
+
+.inventory-table {
+    width: 100%; /*  Table itself should be full width */
+    border-collapse: collapse; /* Removes spacing between table cells */
+    margin-top: 30px;
+}
+
+.inventory-table th,
+.inventory-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Subtle bottom border for rows */
+}
+
+.inventory-table th {
+    background-color: #f8f9fa; /* Light gray background for header */
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.inventory-table tr:hover {
+    background-color: #f5f5f5; /* Highlight rows on hover */
+}
+
+.inventory-table td.product-name {
+    font-weight: 500; /* Make product name stand out */
+    color: var(--primary-color); /* Use primary color for product name */
+}
+
+.inventory-table td.quantity {
+    width: 100px; /* Fixed width for quantity column */
+    text-align: center;
+}
+.inventory-table td.quantity .badge{
+      padding: 4px 8px;
+      border-radius: 4px;
+
+}
+.inventory-table .badge-success {
+    background-color: rgba(40, 167, 69, 0.15); /* Light green background */
+    color: #28a745; /* Darker green text */
+    border: 1px solid #28a745;
+}
+
+.inventory-table .badge-danger {
+    background-color: rgba(220, 53, 69, 0.15); /* Light red background */
+    color: #dc3545; /* Darker red text */
+    border: 1px solid #dc3545;
+}
+
+.inventory-table td.actions {
+    width: 150px; /* Fixed width for actions column */
+    text-align: center;
+}
+
+.inventory-table td.actions button {
+    margin: 0 5px; /* Spacing between buttons */
+    padding: 6px 12px; /* Smaller button padding */
+}
+.inventory-table td.sku, .inventory-table td.brand{
+    color:#555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .inventory-table th,
+    .inventory-table td {
+        padding: 8px 10px; /* Smaller padding on smaller screens */
+        font-size: 14px;
+    }
+    .inventory-table td.actions button{
+        padding: 4px 8px;
+    }
+}
+
+/* Crucial Addition: Ensure .list-container allows full width */
+.list-container {
+    width: 100%; /*  Make sure the container holding the table allows full width */
+}
+
+/* Potentially also needed, depending on your variables.css */
+.main-content {
+   width: 100%; /*If this was restricted, the table inside couldn't be full width*/
+   padding: 20px; /* Or whatever padding you want */
+}

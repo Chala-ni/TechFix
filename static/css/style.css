@@ -1,0 +1,327 @@
+@import 'variables.css';
+@import 'base.css';
+@import 'buttons.css';
+@import 'dashboard.css';
+@import 'supplier/dashboard.css';
+@import 'forms.css';
+@import 'inventory.css';
+@import 'products.css';
+@import 'modals.css';
+@import 'supplier.css';
+
+@import 'components/cards.css';
+@import 'components/badges.css';
+@import 'components/alerts.css';
+@import 'components/lists.css';
+@import 'components/images.css';
+@import 'components/quotations.css';
+@import 'components/status_badges.css';
+
+.grid-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.grid-form .form-group {
+    margin-bottom: 0; /* Adjust spacing in grid layout */
+}
+
+
+/* order-styles.css */
+
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Main Container for Orders */
+#order-display-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Individual Order Card */
+.order-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+     margin-bottom: 20px; /* Spacing between cards */
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Order Card Header */
+.order-card h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+/* Status Badge */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8em;
+}
+
+.status-badge-pending {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+.status-badge-processing {
+    background-color: #5bc0de;
+    color: white;
+}
+
+.status-badge-completed {
+    background-color: #5cb85c;
+    color: white;
+}
+
+.status-badge-cancelled {
+    background-color: #d9534f;
+    color: white;
+}
+
+/* Order Date */
+.order-card p {
+    margin: 5px 0;
+    color: #666;
+}
+
+/* Items Container */
+.items-container {
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+/* Individual Order Item */
+.order-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.order-item p {
+    margin: 5px 0;
+
+}
+.order-item p:first-child {
+   font-weight: bold;
+}
+
+/* Total Amount */
+.total-amount {
+    font-size: 1.2em;
+    color: #27ae60;
+    margin-top: 15px;
+}
+
+
+
+/* Modal Styles */
+#orderDetailsModal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: relative; /* For absolute positioning of close button */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px var(--primary-color) solid;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.modal-header h2 {
+    margin: 0;
+     color: #2c3e50;
+}
+
+.modal-body {
+    margin-bottom: 20px;
+}
+/* Order Details Modal Styles */
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Order Info Section */
+.order-info-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.info-block {
+    flex: 1;
+    min-width: 250px;
+     margin-bottom: 10px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+     border-bottom: 1px solid #eee;
+}
+
+.info-label {
+    font-weight: bold;
+    margin-right: 10px;
+     color: #333;
+}
+
+.info-value {
+    text-align: right;
+}
+
+/* Order Items in Modal */
+.modal-content .items-container {
+    border-top: none; /* Override border from the main card styling */
+     margin-top: 5px;
+    padding-top: 0px;
+}
+
+/* order item names */
+.item-name{
+font-weight:bold;
+}
+
+.modal-content .order-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+
+}
+
+.modal-content .order-item:last-child {
+    border-bottom: none;
+}
+
+.order-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.item-quantity {
+    color: #777;
+}
+
+.order-item-details {
+    margin-left: 10px;
+}
+.details-row{
+  display: flex;
+    justify-content: space-between;
+    margin: 2px 0;
+}
+
+.detail-label {
+    color: #666;
+}
+
+/* Order Summary Footer */
+.order-summary-footer {
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+    margin-top: 20px;
+    text-align: right;
+}
+
+.summary-total {
+    font-size: 1.2em;
+}
+
+.total-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.total-value {
+    color: #27ae60;
+}
+
+/* modal foooter */
+.modal-footer {
+    text-align: right;
+     padding-top: 10px;
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #order-display-container {
+        grid-template-columns: 1fr; /* Stack cards vertically on small screens */
+    }
+
+    .order-card {
+        margin-bottom: 15px; /* Add spacing between stacked cards */
+    }
+
+    .order-info-section {
+        flex-direction: column; /* Stack info blocks in modal */
+    }
+
+    .modal-content {
+        width: 95%; /* More width on smaller screens */
+        margin: 10% auto; /* Adjust margin for better mobile view */
+    }
+}

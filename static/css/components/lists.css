@@ -1,0 +1,23 @@
+.list-container {
+    margin-top: 25px;
+}
+
+.search-box, .filter-box {
+    margin-bottom: 25px;
+}
+
+.search-box input, .filter-box select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #fafafa;
+    transition: all 0.25s ease;
+}
+
+.search-box input:focus, .filter-box select:focus {
+    border-color: var(--primary-color);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(37, 150, 190, 0.1);
+}

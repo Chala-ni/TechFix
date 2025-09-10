@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Dashboard - TechFix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar Toggle Button -->
+        <button class="sidebar-toggle" id="sidebarToggle" title="Toggle Sidebar">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Overlay for mobile view -->
+        <div class="overlay" id="overlay"></div>
+        
+        <div class="dashboard-content">
+            <!-- Navbar -->
+            <div class="navbar">
+                <div class="navbar-brand">
+                    <i class="fas fa-laptop"></i>
+                    TechFix
+                </div>
+                <div class="navbar-buttons">
+                    <button id="profileBtn" class="profile-btn" data-tooltip="Profile">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <button id="logoutBtn" class="logout-btn" data-tooltip="Logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <!-- Remove sidebar-header div -->
+                <div class="profile-circle">
+                    <div class="circle">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <span class="profile-label">Supplier</span>
+                </div>
+                <nav class="nav-links">
+                    <button id="productsBtn" class="btn-primary">
+                        <i class="fas fa-box-open"></i> Products
+                    </button>
+                    <button id="inventoryBtn" class="btn-primary">
+                        <i class="fas fa-warehouse"></i> Inventory
+                    </button>
+                    <button id="quotationsBtn" class="btn-primary">
+                        <i class="fas fa-file-invoice-dollar"></i> Quotations
+                    </button>
+                    <button id="ordersBtn" class="btn-primary">
+                        <i class="fas fa-truck-fast"></i> Orders
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div id="productsSection" class="content-section">
+                    <h2><i class="fas fa-box-open"></i> Products</h2>
+                    <div id="productsList" class="list-container">
+                        <!-- Products will be loaded here dynamically -->
+                    </div>
+                </div>
+
+                <div id="quotationsSection" class="content-section" style="display: none;">
+                    <h2><i class="fas fa-file-invoice-dollar"></i> Quotations</h2>
+                    <button class="btn-primary" onclick="openQuotationModal()">Add New Quotation</button>
+                    <div id="quotationsList" >
+                        <!-- Quotations will be loaded here dynamically -->
+                    </div>
+                </div>
+
+                <!-- Add Quotation Modal -->
+                <div id="quotationModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <h2>Add New Quotation</h2>
+                        <form id="quotationForm">
+                            <div id="quotationItems">
+                                <div class="quotation-item">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="product">Product</label>
+                                            <select name="product" class="product-select" required>
+                                                <option value="">Select Product</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="qty">Quantity</label>
+                                            <input type="number" name="qty" min="1" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="price">Price</label>
+                                            <div class="price-input">
+                                                <span class="currency-symbol">$</span>
+                                                <input type="number" name="price" step="0.01" min="0" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-secondary" onclick="addQuotationItem()">Add Another Product</button>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">Submit Quotation</button>
+                                <button type="button" class="btn-secondary" onclick="closeQuotationModal()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="ordersSection" class="content-section" style="display: none;">
+                    <h2><i class="fas fa-truck-fast"></i> Orders</h2>
+                    <div id="ordersList" class="list-container">
+                        <!-- Orders will be loaded here dynamically -->
+                    </div>
+                </div>
+
+                <div id="inventorySection" class="content-section" style="display: none;">
+                    <h2><i class="fas fa-warehouse"></i> Inventory Management</h2>
+                    <div class="inventory-controls">
+                        <button class="btn-primary" onclick="openInventoryModal()">Add New Product to Inventory</button>
+                    </div>
+                    <div id="inventoryList" class="list-container">
+                        <!-- Inventory items will be loaded here dynamically -->
+                    </div>
+                </div>
+
+                <!-- Add to Inventory Modal -->
+                <div id="addInventoryModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <h2>Add Product to Inventory</h2>
+                        <form id="addInventoryForm">
+                            <div class="form-group">
+                                <label for="productSelect">Select Product</label>
+                                <select id="productSelect" name="product" class="form-control" required>
+                                    <option value="">Select a product</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Quantity</label>
+                                <input type="number" id="quantity" name="quantity" class="form-control" min="1" required>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">Add to Inventory</button>
+                                <button type="button" class="btn-secondary" onclick="closeInventoryModal()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="profileSection" class="content-section" style="display: none;">
+                    <h2> <i class="fas fa-user"></i> Profile Settings</h2>
+                    <div class="profile-container">
+                        <!-- Profile Details Form -->
+                        <div class="profile-form-section">
+                            <form id="profileForm" class="form-container">
+                                <div class="form-group">
+                                    <label for="name">Full Name</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input type="text" id="address" name="address" required>
+                                </div>
+                                <button type="submit" class="btn-primary">Update Profile</button>
+                            </form>
+                        </div>
+
+                        <!-- Password Change Form -->
+                        <div class="profile-form-section">
+                            <form id="passwordForm" class="form-container">
+                                <div class="form-group">
+                                    <label for="currentPassword">Current Password</label>
+                                    <input type="password" id="currentPassword" name="currentPassword" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <input type="password" id="newPassword" name="newPassword" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Confirm New Password</label>
+                                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                                </div>
+                                <button type="submit" class="btn-primary">Change Password</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/supplier/ui/sidebar.js"></script>
+    <script type="module" src="js/supplier-dashboard.js"></script>
+</body>
+</html>

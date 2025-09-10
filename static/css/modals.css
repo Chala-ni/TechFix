@@ -1,0 +1,328 @@
+@import 'variables.css';
+
+/* Modal base styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px; /* Add or adjust this line */
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+    width: 95%;
+    max-width: 800px;
+    position: relative;
+    animation: modalFadeIn 0.3s ease;
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.modal-body {
+    padding: 30px; /* Add or adjust this line */
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 20px 30px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    background-color: #fafafa;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 28px;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    transition: all 0.25s ease;
+}
+
+.close:hover {
+    color: var(--primary-color);
+    background-color: rgba(37, 150, 190, 0.08);
+}
+
+/* Modal animation */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Specific modal styles */
+#supplierDetailsModal .supplier-details,
+#orderDetailsModal .order-details,
+#quotationModal .quotation-items {
+    background-color: #f9fafc;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* Specifically increase quotation modal width */
+#quotationModal .modal-content {
+    max-width: 900px;
+}
+
+/* Quotation modal specific styling */
+#quotationModal .modal-header {
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: 0;
+}
+
+#quotationModal .items-container {
+    max-height: 450px;
+    padding: 15px;
+    background-color: #f9f9fb;
+    border: 1px solid rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+    border-radius: 10px;
+}
+
+#quotationModal .quotation-item {
+    transition: all 0.25s ease;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+#quotationModal .quotation-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* Make the add item button more prominent */
+.add-item-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    margin: 15px 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(255,107,0,0.2);
+}
+
+.add-item-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255,107,0,0.25);
+}
+
+/* Responsive adjustments for the quotation modal */
+@media (max-width: 768px) {
+    #quotationModal .modal-content {
+        padding: 0;
+    }
+    
+    #quotationModal .quotation-items-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+}
+
+.items-container {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.quotation-item, .order-item {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.quotation-item:hover, .order-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Redesigned circular remove button with icon */
+.quotation-item .btn-danger {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background-color: #f8f9fa;
+    color: #dc3545;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.quotation-item .btn-danger:hover {
+    background-color: #dc3545;
+    color: white;
+    transform: rotate(90deg);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.25);
+}
+
+.quotation-item .form-row {
+    padding-right: 50px; /* Space for the remove button */
+}
+
+/* Supplier details modal enhancements */
+#supplierDetailsModal .modal-content {
+    max-width: 700px;
+}
+
+#supplierDetailsModal .modal-header {
+    background-color: #f8f9fa;
+}
+
+#supplierDetailsModal .supplier-details {
+    padding: 25px;
+}
+
+#supplierDetailsModal .detail-row {
+    padding: 12px 0;
+}
+
+#supplierDetailsModal .detail-value {
+    font-weight: 500;
+}
+
+/* Order details modal enhancements */
+#orderDetailsModal .modal-content {
+    max-width: 750px;
+}
+
+#orderDetailsModal .order-details {
+    padding: 0;
+}
+
+#orderDetailsModal .order-info-section {
+    margin-bottom: 30px;
+}
+
+#orderDetailsModal h3 {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+#orderDetailsModal .info-block {
+    background-color: #f9fafc;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+#orderDetailsModal .items-container {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .modal-content {
+        width: 95%;
+        max-width: 700px;
+        margin: 10% auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 0;
+    }
+    
+    .modal-header {
+        padding: 15px 20px;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    .modal-footer {
+        padding: 15px 20px;
+    }
+    
+    .quotation-item .btn-danger {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-top: 15px;
+        width: 100%;
+        border-radius: 8px;
+        height: 42px;
+    }
+    
+    .quotation-item .form-row {
+        padding-right: 0;
+    }
+}

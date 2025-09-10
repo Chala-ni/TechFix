@@ -1,0 +1,2 @@
+checkAuth();
+showSection('suppliers');

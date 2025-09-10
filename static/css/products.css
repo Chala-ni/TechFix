@@ -1,0 +1,441 @@
+@import 'variables.css';
+
+/* Product grid layout */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(400px, 1fr)); /* Changed to ensure wider cards with minimum width */
+    gap: 30px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+/* Product management controls */
+.product-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-controls .btn-primary {
+    min-width: 180px;
+}
+
+.product-controls .search-box {
+    flex: 1;
+    max-width: 500px;
+    margin-bottom: 0;
+}
+
+/* Product card styling */
+
+/* Product card base styling */
+.product-card {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(37, 150, 190, 0.1);
+}
+
+/* Product card header */
+.product-card-header {
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.product-card-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 70%;
+}
+
+/* Category badge styling */
+.category-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 12px;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--primary-color);
+    padding: 6px 12px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    z-index: 1;
+}
+
+/* Product image container */
+.product-image {
+    height: 200px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+/* Placeholder for missing product image */
+.no-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #aaa;
+    gap: 10px;
+}
+
+.no-image i {
+    font-size: 32px;
+    opacity: 0.5;
+}
+
+.no-image span {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Product card body for details */
+.product-card-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Product info grid layout */
+.product-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.info-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6c757d;
+    min-width: 120px;
+}
+
+/* Updated icons for info labels */
+.info-label i.fa-hashtag { color: #e74c3c; }  /* Part Number */
+.info-label i.fa-building { color: #3498db; }  /* Manufacturer */
+.info-label i.fa-layer-group { color: #2ecc71; }  /* Category */
+.info-label i.fa-clock { color: #f39c12; }  /* Updated */
+
+.info-value {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+/* Product description styling */
+.product-description {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #495057;
+    margin-top: auto;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* Product card footer for actions */
+.product-card-footer {
+    padding: 15px 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: 10px;
+    background-color: #fafafa;
+}
+
+.product-card-footer button {
+    flex: 1;
+    padding: 10px 0;
+}
+
+/* Edit button styling */
+.edit-product {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(37, 150, 190, 0.15);
+}
+
+.edit-product:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(37, 150, 190, 0.2);
+}
+
+.edit-product:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(37, 150, 190, 0.1);
+}
+
+/* Delete button styling */
+.delete-product {
+    background-color: #f1f3f5;
+    color: #6c757d;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.delete-product:hover {
+    background-color: #e9ecef;
+    color: #dc3545;
+    border-color: rgba(220, 53, 69, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Product form styling */
+.product-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    box-shadow: var(--card-shadow);
+    width: 100%; /* Fixed width */
+    margin: 0 auto 30px; /* Center horizontally */
+}
+
+.product-form h3 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    color: var(--primary-color);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* Image preview styling */
+.image-preview {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    border: 2px dashed var(--primary-color);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Make sure upload prompt is always visible by default */
+.image-preview .upload-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: #64748b;
+    text-align: center;
+    padding: 20px;
+}
+
+.image-preview:hover {
+    background-color: #edf2f7;
+    border-color: #2980b9;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    z-index: 1;
+}
+
+.remove-image {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    color: #dc3545;
+    font-size: 18px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+}
+
+.remove-image:hover {
+    background-color: #dc3545;
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* Form actions styling */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.form-actions button {
+    padding: 12px 24px;
+    font-size: 15px;
+}
+
+/* Update image upload styling */
+.image-upload-container {
+    margin-bottom: 30px;
+    width: 300px; /* Fixed width for image container */
+    margin: 0 auto 30px; /* Center horizontally */
+
+}
+
+.image-upload-wrapper {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+}
+
+.hidden-file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.upload-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: #64748b;
+    text-align: center;
+    padding: 20px;
+}
+
+.upload-prompt i {
+    font-size: 48px;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.upload-prompt span {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.upload-prompt small {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+/* Drag and drop visual feedback */
+.image-preview.drag-over {
+    background-color: #e2e8f0;
+    border-color: #2980b9;
+    border-style: solid;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .product-form {
+        padding: 25px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+        gap: 20px;
+    }
+    
+    .product-card-header h3 {
+        font-size: 16px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions button {
+        width: 100%;
+    }
+    
+    .product-image {
+        height: 180px;
+    }
+    
+    .product-form {
+        width: 100%;
+        padding: 20px;
+    }
+}

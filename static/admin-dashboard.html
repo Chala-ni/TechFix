@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - TechFix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar Toggle Button -->
+        <button class="sidebar-toggle" id="sidebarToggle" title="Toggle Sidebar">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Overlay for mobile view -->
+        <div class="overlay" id="overlay"></div>
+
+        <div class="dashboard-content">
+            <!-- Navbar -->
+            <div class="navbar">
+                <div class="navbar-brand">
+                    <i class="fas fa-laptop"></i>
+                    TechFix
+                </div>
+                <div class="navbar-buttons">
+                    <button id="logoutBtn" class="logout-btn" data-tooltip="Logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <!-- Profile Circle Section -->
+                <div class="profile-circle">
+                    <div class="circle">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <span class="profile-label">Admin</span>
+                </div>
+                <nav class="nav-links">
+                    <button id="suppliersBtn" class="btn-primary">
+                        <i class="fas fa-users"></i> Suppliers
+                    </button>
+                    <button id="productsBtn" class="btn-primary">
+                        <i class="fas fa-box-open"></i> Products
+                    </button>
+                    <button id="quotationsBtn" class="btn-primary">
+                        <i class="fas fa-file-invoice-dollar"></i> Quotations
+                    </button>
+                    <button id="ordersBtn" class="btn-primary">
+                        <i class="fas fa-truck-fast"></i> Orders
+                    </button>
+                    
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div id="suppliersSection" class="content-section">
+                    <h2><i class="fas fa-users"></i> Suppliers</h2>
+                    <div class="search-box">
+                        <input type="text" id="supplierSearch" placeholder="Search suppliers...">
+                    </div>
+                    <div id="suppliersList" class="list-container">
+                        <!-- Suppliers will be loaded here dynamically -->
+                    </div>
+                </div>
+
+                <div id="quotationsSection" class="content-section" style="display: none;">
+                    <h2><i class="fas fa-file-invoice-dollar"></i> Quotations Management</h2>
+                    <div class="filter-box">
+                        <select id="quotationStatus">
+                            <option value="all">All</option>
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                    <div id="quotationsList" class="list-container">
+                        <!-- Quotations will be loaded here dynamically -->
+                    </div>
+                </div>
+
+                <!-- Orders Section -->
+                <div id="ordersSection" class="content-section" style="display: none;">
+                    <h2><i class="fas fa-truck-fast"></i> Orders Management</h2>
+                    <div class="filter-box">
+                        <select id="orderStatus">
+                            <option value="all">All Orders</option>
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    <div id="ordersList" class="list-container">
+                        <!-- Orders will be loaded here dynamically -->
+                    </div>
+                </div>
+                <div id="productsSection" class="content-section" style="display: none;">
+                    <h2><i class="fas fa-box-open"></i> Products Management</h2>
+                    <div class="product-controls">
+                        <button id="btn-add-product" class="btn-primary">
+                            <i class="fas fa-plus"></i> Add New Product
+                        </button>
+                        <div class="search-box">
+                            <input type="text" id="productSearch" placeholder="Search products...">
+                        </div>
+                    </div>
+                    <form id="product-form" class="product-form" style="display:none;" enctype="multipart/form-data">
+                        <h3>Product Details</h3>
+                        
+                        <!-- Move image upload to top and update styling -->
+                        <div class="form-group image-upload-container">
+                            <label for="product-image">Product Image</label>
+                            <div class="image-upload-wrapper">
+                                <input type="file" id="product-image" name="image" accept="image/*" onchange="handleImagePreview(this)" class="hidden-file-input">
+                                <div id="image-preview" class="image-preview">
+                                    <div class="upload-prompt">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Click or drag image to upload</span>
+                                        <small>Supports: JPG, PNG (Max 5MB)</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Rest of the form fields remain unchanged -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-name">Product Name</label>
+                                <input type="text" id="product-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+<label for="product-part-number">SKU</label>
+                                <input type="text" id="product-part-number" name="part_number" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-manufacturer">Brand</label>
+                                <input type="text" id="product-manufacturer" name="manufacturer">
+                            </div>
+                            <div class="form-group">
+                                <label for="product-category">Category</label>
+                                <select id="product-category" name="category" required>
+                                    <option value="">Select Category</option>
+                                    <option value="CPU">CPUs & Processors</option>
+                                    <option value="Motherboard">Motherboards</option>
+                                    <option value="RAM">Memory/RAM</option>
+                                    <option value="Storage">Storage (HDDs, SSDs)</option>
+                                    <option value="GPU">Graphics Cards</option>
+                                    <option value="PSU">Power Supplies</option>
+                                    <option value="Case">Computer Cases</option>
+                                    <option value="Cooling">Cooling Solutions</option>
+                                    <option value="Monitor">Monitors & Displays</option>
+                                    <option value="Peripheral">Peripherals</option>
+                                    <option value="Network">Networking</option>
+                                    <option value="Cable">Cables & Adapters</option>
+                                    <option value="Accessory">Other Accessories</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-description">Description</label>
+                            <textarea id="product-description" name="description" rows="4"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Save Product</button>
+                            <button type="button" id="cancel-product-form" class="btn-secondary">Cancel</button>
+                        </div>
+                    </form>
+                    <div id="productsList" class="list-container">
+                        <!-- Products will be loaded here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supplier Details Modal -->
+    <div id="supplierDetailsModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Supplier Details</h2>
+            <div id="supplierDetails"></div>
+            <div id="supplierProducts"></div>
+            <button class="btn-secondary" onclick="closeSupplierModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div id="orderDetailsModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <!-- Content will be dynamically populated -->
+        </div>
+    </div>
+
+    <!-- Add sidebar toggle functionality -->
+    <script>
+        document.getElementById('sidebarToggle').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        });
+
+        document.getElementById('overlay').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.remove('active');
+            this.classList.remove('active');
+        });
+
+        // Close sidebar when a navigation item is clicked on mobile
+        const navButtons = document.querySelectorAll('.nav-links button');
+        navButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                if (window.innerWidth <= 768) {
+                    document.getElementById('sidebar').classList.remove('active');
+                    document.getElementById('overlay').classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+    <!-- Core scripts -->
+    <script src="js/admin/auth.js"></script>
+    <script src="js/admin/shared.js"></script>
+
+    <!-- Component scripts -->
+    <script src="js/admin/suppliers.js"></script>
+    <script src="js/admin/quotations.js"></script>
+    <script src="js/admin/orders.js"></script>
+    <script src="js/admin/products.js"></script>
+
+    <!-- Navigation and initialization -->
+    <script src="js/admin/nav.js"></script>
+    <script src="js/admin/init.js"></script>
+</body>
+
+</html>

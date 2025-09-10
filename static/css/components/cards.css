@@ -1,0 +1,110 @@
+.card {
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    margin-bottom: 25px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 150, 190, 0.1);
+}
+
+.card h3 {
+    color: var(--text-color);
+    margin-bottom: 18px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.card p {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.order-header-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-date {
+    font-size: 14px;
+    color: #777;
+}
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-summary {
+    margin-bottom: 15px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.summary-label {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.summary-value {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.highlight {
+    color: var(--primary-color);
+}
+
+.primary-product {
+    margin-bottom: 15px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.more-items {
+    font-size: 12px;
+    color: #777;
+}
+
+.btn-primary.btn-block {
+    width: 100%;
+    text-align: center;
+}
